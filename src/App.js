@@ -1,5 +1,11 @@
-const App = () => {
-  return <div>Welcome! You can now start your project</div>;
-};
+import React, { Component } from 'react';
+import CardList from './components/CardList/CardList';
+import { robots } from './robots';
+
+class App extends Component {
+  render() {
+    return <CardList robots={robots} />;
+  }
+}
 
 export default App;
