@@ -1,10 +1,10 @@
 import Card from './../Card/Card';
 
-const CardList = ({ robots }) => {
+const CardList = ({ monsters }) => {
   return (
     <div>
-      {robots.map((robot) => (
-        <Card key={robot.id} robot={robot} />
+      {monsters.map((monster) => (
+        <Card key={monster.id} monster={monster} />
       ))}
     </div>
   );

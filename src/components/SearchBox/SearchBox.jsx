@@ -6,7 +6,7 @@ class SearchBox extends Component {
       <div className='pa2'>
         <input
           className='pa3 ba b--green bg-lightest-blue'
-          placeholder='Search Robots'
+          placeholder='Search Monsters'
           type='search'
           onChange={this.props.searchFieldChange}
         />

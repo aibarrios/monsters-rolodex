@@ -10,15 +10,15 @@ class App extends Component {
     super();
 
     this.state = {
-      robots: [],
+      monsters: [],
       searchField: '',
     };
   }
 
   async componentDidMount() {
     const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
-    const robots = await response.json();
-    this.setState({ robots });
+    const monsters = await response.json();
+    this.setState({ monsters });
   }
 
   searchFieldChange = (event) => {
@@ -26,13 +26,13 @@ class App extends Component {
   };
 
   render() {
-    const filteredRobots = this.state.robots.filter((robot) => {
-      return robot.name
+    const filteredMonsters = this.state.monsters.filter((monster) => {
+      return monster.name
         .toLowerCase()
         .includes(this.state.searchField.toLowerCase());
     });
 
-    if (this.state.robots.length === 0) {
+    if (this.state.monsters.length === 0) {
       return <div className='pa f1 tc'>Loading...</div>;
     } else {
       return (
@@ -41,7 +41,7 @@ class App extends Component {
             <h1 className='pa2 f1'>Monsters-Rolodex</h1>
             <SearchBox searchFieldChange={this.searchFieldChange} />
             <ScrollableContent>
-              <CardList robots={filteredRobots} />
+              <CardList monsters={filteredMonsters} />
             </ScrollableContent>
           </div>
         </ErrorBoundary>
