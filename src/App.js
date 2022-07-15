@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardList from './components/CardList/CardList';
 import SearchBox from './components/SearchBox/SearchBox';
 import ScrollableContent from './components/ScrollableContent/ScrollableContent';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import './App.css';
 
 class App extends Component {
@@ -35,13 +36,15 @@ class App extends Component {
       return <div className='pa f1 tc'>Loading...</div>;
     } else {
       return (
-        <div className='tc'>
-          <h1 className='pa2 f1'>Monsters-Rolodex</h1>
-          <SearchBox searchFieldChange={this.searchFieldChange} />
-          <ScrollableContent>
-            <CardList robots={filteredRobots} />
-          </ScrollableContent>
-        </div>
+        <ErrorBoundary>
+          <div className='tc'>
+            <h1 className='pa2 f1'>Monsters-Rolodex</h1>
+            <SearchBox searchFieldChange={this.searchFieldChange} />
+            <ScrollableContent>
+              <CardList robots={filteredRobots} />
+            </ScrollableContent>
+          </div>
+        </ErrorBoundary>
       );
     }
   }
