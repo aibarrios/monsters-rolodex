@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import CardList from './components/CardList/CardList';
-import SearchBox from './components/SearchBox/SearchBox';
-import ScrollableContent from './components/ScrollableContent/ScrollableContent';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import CardList from './components/CardList/CardList.component.jsx';
+import SearchBox from './components/SearchBox/SearchBox.component.jsx';
+import ScrollableContent from './components/ScrollableContent/ScrollableContent.component.jsx';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.component.jsx';
 import './App.css';
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
     this.setState({ monsters });
   }
 
-  searchFieldChange = (event) => {
+  onInputChange = (event) => {
     this.setState({ searchField: event.target.value });
   };
 
@@ -33,13 +33,17 @@ class App extends Component {
     });
 
     if (this.state.monsters.length === 0) {
-      return <div className='pa f1 tc'>Loading...</div>;
+      return <h1 className='pa f1 tc'>Loading...</h1>;
     } else {
       return (
         <ErrorBoundary>
           <div className='tc'>
             <h1 className='pa2 f1'>Monsters-Rolodex</h1>
-            <SearchBox searchFieldChange={this.searchFieldChange} />
+            <SearchBox
+              className='pa3 ba b--green bg-lightest-blue'
+              placeholder='Search monsters'
+              onChangeHandler={this.onInputChange}
+            />
             <ScrollableContent>
               <CardList monsters={filteredMonsters} />
             </ScrollableContent>

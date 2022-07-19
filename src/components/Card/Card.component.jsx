@@ -1,10 +1,10 @@
 const Card = (props) => {
-  const { name, email, username } = props.monster;
+  const { name, email, id } = props.monster;
   return (
     <div className='bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5 tc'>
       <img
-        alt='monster_face'
-        src={`https://robohash.org/${username}?set=set2&size=200x200`}
+        alt={`monster ${name}`}
+        src={`https://robohash.org/${id}?set=set2&size=180x180`}
       />
       <div>
         <h2>{name}</h2>

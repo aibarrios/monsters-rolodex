@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 class SearchBox extends Component {
   render() {
     return (
       <div className='pa2'>
         <input
-          className='pa3 ba b--green bg-lightest-blue'
-          placeholder='Search Monsters'
+          className={this.props.className}
+          placeholder={this.props.placeholder}
           type='search'
-          onChange={this.props.searchFieldChange}
+          onChange={this.props.onChangeHandler}
         />
       </div>
     );
