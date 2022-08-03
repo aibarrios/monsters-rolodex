@@ -1,27 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import CardList from './components/CardList/CardList.component';
 import SearchBox from './components/SearchBox/SearchBox.component.jsx';
 import ScrollableContent from './components/ScrollableContent/ScrollableContent.component.jsx';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.component';
 import './App.css';
+import { searchFieldChange } from './redux/searchBoxSlice';
+import fetchData from './redux/fetchDataThunk';
 
 const App = () => {
-  const [monsters, setMonsters] = useState([]);
-  const [searchField, setSearchField] = useState('');
+  const monsters = useSelector((state) => {
+    return state.monsters.monsters;
+  });
 
-  const onSearchChange = (event) => {
-    return setSearchField(event.target.value);
-  };
+  const searchField = useSelector((state) => {
+    return state.searchBox.searchField;
+  });
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function fetchData(url) {
-      const response = await fetch(url);
-      const newMonsters = await response.json();
-      setMonsters(newMonsters);
-    }
+    dispatch(fetchData(`https://jsonplaceholder.typicode.com/users`));
+  }, [dispatch]);
 
-    fetchData(`https://jsonplaceholder.typicode.com/users`);
-  }, []);
+  const onSearchChange = (event) => {
+    return dispatch(searchFieldChange(event.target.value));
+  };
 
   const filteredMonsters = monsters.filter((monster) => {
     return monster.name.toLowerCase().includes(searchField.toLowerCase());
